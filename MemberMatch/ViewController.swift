@@ -100,11 +100,7 @@ class ViewController: UIViewController {
     
     func getImageName(name: String) -> String {
         var ret = name.lowercased()
-        // remove spaces in name
-        while ret.contains(" ") {
-            let index = ret.index(of: " ")
-            ret.remove(at: index!)
-        }
+        ret = ret.replacingOccurrences(of: " ", with: "")
         return ret
     }
     
