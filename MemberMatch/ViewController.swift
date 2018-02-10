@@ -58,10 +58,6 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
         pauseTimer = false
-        if timer != nil {
-            timer.text = "5"
-            time = 5
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,8 +70,6 @@ class ViewController: UIViewController {
         if(imageView != nil) {
             // toggle game state
             toggleGameState()
-            timer.text = "5"
-            time = 5
         } else {
             // create game state
             createStatisticsBar()
@@ -152,6 +146,7 @@ class ViewController: UIViewController {
         
         pauseTimer = false
         timer.text = "5"
+        time = 5
         
         updateMembersSeen()
     }
@@ -192,7 +187,6 @@ class ViewController: UIViewController {
     
     @objc func updateTimer() {
         if pauseTimer {
-            time = 5
         } else {
             time = time - 1
             timer.text = String(time)
@@ -241,7 +235,7 @@ class ViewController: UIViewController {
         if !game {
             startButton.setTitle("Start", for: .normal)
         } else {
-            startButton.setTitle("Stop", for: .normal)
+            startButton.setTitle("Pause", for: .normal)
         }
     }
     
@@ -262,7 +256,7 @@ class ViewController: UIViewController {
     }
     
     func createStartButton() {
-        startButton = UIButton(frame: CGRect(x: 20, y: 600, width: width - 40, height: 45))
+        startButton = UIButton(frame: CGRect(x: 20, y: view.frame.height*9/10, width: width - 40, height: 45))
         startButton.setTitleColor(.white, for: .normal)
         startButton.setTitle("Start", for: .normal)
         startButton.layer.cornerRadius = 5
@@ -322,9 +316,9 @@ class ViewController: UIViewController {
     }
     
     func createTimer() {
-        timer = UILabel(frame: CGRect(x: imageView.frame.maxX - 30, y: imageView.frame.maxY - 35, width: 30, height: 30))
+        timer = UILabel(frame: CGRect(x: imageView.frame.maxX - 50, y: imageView.frame.maxY - 55, width: 50, height: 50))
         timer.textColor = .white
-        timer.font = UIFont.systemFont(ofSize: 30)
+        timer.font = UIFont.systemFont(ofSize: 50)
         timer.textAlignment = .center
         view.addSubview(timer)
     }
